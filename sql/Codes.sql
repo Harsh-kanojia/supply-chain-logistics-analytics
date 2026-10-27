@@ -170,7 +170,7 @@ ROUND((SUM(CASE WHEN late_delivery = "Yes" THEN 1
 
 -- Challenge 16: Analyze warehouse performance
 -- Business question: How do order volume, processing hours, late deliveries, delays, and customer ratings vary by warehouse?
-  SELECT warehouse_id, warehouse_city, COUNT(order_id) AS total_orders, ROUND(AVG(warehouse_processing_hours),2) AS avg_proces_hours,
+  SELECT warehouse_id, warehouse_city, COUNT(order_id) AS total_orders, ROUND(AVG(warehouse_processing_hours),2) AS avg_processing_hours,
   ROUND(SUM(CASE WHEN late_delivery = "Yes" THEN 1
   ELSE 0 
   END * 100) / COUNT(order_id),2) AS late_delivery_percentage,
@@ -269,7 +269,7 @@ ORDER BY percentage DESC;
 
 -- Challenge 23: Analyze delivery performance by order priority
 -- Business question: How do actual delivery time, delay days, and late-delivery rates compare across priorities?
-SELECT order_priority, COUNT(order_id) AS total_orders, ROUND(AVG(actual_delivery_days),2) AS avg_actuaL_delay_days, ROUND(AVG(delivery_delay_days),2) AS avg_delay_days,
+SELECT order_priority, COUNT(order_id) AS total_orders, ROUND(AVG(actual_delivery_days),2) AS avg_actual_delivery_days, ROUND(AVG(delivery_delay_days),2) AS avg_delay_days,
 SUM(CASE WHEN late_delivery = "Yes" THEN 1
 	ELSE 0
     END) AS late_deliveries, ROUND((SUM(CASE WHEN late_delivery = "Yes" THEN 1
@@ -277,7 +277,7 @@ SUM(CASE WHEN late_delivery = "Yes" THEN 1
     END) * 100) / COUNT(order_id),2) AS percentage
     FROM supply_chain 
     GROUP BY order_priority
-    ORDER BY avg_actuaL_delay_days DESC;
+    ORDER BY avg_actual_delivery_days DESC;
 
 -- Challenge 24: Analyze average shipping cost per kilometre by shipping method
 -- Business question: Which shipping methods have the highest average cost per kilometre?
