@@ -26,11 +26,12 @@ The aim is to turn order-level data into understandable performance measures and
 - **Rows:** 50,000
 - **Columns:** 37 after feature engineering
 - **Format:** CSV
-- **Project dataset file:** `Supply_Chain_Feature_Engineered(1).csv` (or the final filename used in the repository)
+- **Raw source file:** `data/E-commerce_Delivery_Shipping_Data_2026.csv`
+- **Feature-engineered output:** `data/Supply_Chain_Feature_Engineered.csv`
 
 The dataset includes order dates and IDs, customer segments, warehouse and city information, product categories, shipping methods, carriers, distances, promised and actual delivery durations, delivery status, shipping costs, order values, weather conditions, ratings, delivery attempts, and return information.
 
-The linked Kaggle resource is a notebook/resource page. Check the original resource for the dataset's download details and review its license and terms before redistributing the data. If redistribution is not permitted, publish the project code and analysis instructions but omit the raw CSV.
+The linked Kaggle resource is a notebook page and states that the notebook is released under the Apache 2.0 license. That does not automatically establish the separate license or redistribution terms for its input dataset. Confirm the dataset asset's terms before publishing either the raw CSV or a derivative copy publicly. If redistribution is not permitted, keep the data out of the public repository and explain how to obtain it from the source.
 
 ## Technologies and Tools
 
@@ -45,29 +46,30 @@ The linked Kaggle resource is a notebook/resource page. Check the original resou
 ## Project Workflow
 
 1. **Excel / Power Query:** Explore the data and understand the available fields.
-2. **Python feature engineering:** Use Pandas and NumPy to create additional analytical fields for delivery delays, delay severity, distance categories, and related analysis.
+2. **Python feature engineering:** Use Pandas and NumPy to derive order month and weekday, classify delay severity, calculate shipping-cost percentage fields, and create distance and warehouse-processing bands.
 3. **MySQL analysis:** Use SQL aggregations, conditional calculations, grouping, common table expressions (CTEs), and window functions to answer 24 business questions.
 4. **Power BI dashboard:** Build DAX measures and interactive visuals to summarize delivery operations, costs, customers, and returns.
 5. **Interpretation and recommendations:** Compare results, identify patterns worth investigating, and communicate them without treating correlation as proof of causation.
 
 ## Python Feature Engineering
 
-The uploaded feature-engineered dataset contains 37 columns. The engineered fields include:
+The raw source CSV has **30 columns**. The feature-engineering notebook produces a **50,000-row, 37-column** output with these seven additional fields:
 
-- `delivery_delay_days`
-- `delay_severity`
-- `distance_band`
-- `warehouse_processing_band`
 - `order_month`
 - `order_day_of_week`
+- `delay_severity`
 - `shipping_cost_pct`
 - `shipping_cost_per`
+- `distance_band`
+- `warehouse_processing_band`
 
-The delay-severity categories include **On Time / Early**, **Minor Delay**, **Moderate Delay**, and **Severe Delay**. Distance and warehouse processing were also grouped into bands to make comparisons easier.
+The source data already contains `delivery_delay_days`; the notebook uses it to assign the categories **On Time / Early**, **Minor Delay**, **Moderate Delay**, and **Severe Delay**. The distance and warehouse-processing bands make comparisons easier in SQL and Power BI.
+
+The notebook uses project-relative paths. From the `python/` folder, it reads `../data/E-commerce_Delivery_Shipping_Data_2026.csv` and writes `../data/Supply_Chain_Feature_Engineered.csv`. Ensure the raw CSV is in that location before running the notebook.
 
 ## SQL Analysis: 24 Business Challenges
 
-The SQL script (`Codes.sql`, or its renamed equivalent in the repository) contains 24 numbered challenges. They cover:
+The SQL script at [`sql/Codes.sql`](sql/Codes.sql) contains 24 numbered challenges. They cover:
 
 1. Count orders by delivery status.
 2. Compare late and non-late orders and their percentages.
@@ -168,18 +170,19 @@ Based on the sample data and the completed analyses, the following are **investi
 
 ## Repository Structure
 
-Use this structure in the GitHub repository. Update filenames in the README if your local filenames differ.
+The project is organized as follows. Use the exact filenames shown when adding the binary files to GitHub.
 
 ```text
-Supply-Chain-Logistics-Analytics/
+supply-chain-logistics-analytics/
 ├── data/
-│   └── Supply_Chain_Feature_Engineered(1).csv
+│   ├── E-commerce_Delivery_Shipping_Data_2026.csv
+│   └── Supply_Chain_Feature_Engineered.csv
 ├── python/
 │   └── Project_1_Ecom.ipynb
 ├── sql/
 │   └── Codes.sql
 ├── powerbi/
-│   └── Supply_Chain_Logistics_Analytics.pbix
+│   └── Supply_Chain_Feature_Engineered.pbix
 ├── screenshots/
 │   ├── executive_overview.png
 │   ├── delivery_operations.png
@@ -188,17 +191,17 @@ Supply-Chain-Logistics-Analytics/
 └── README.md
 ```
 
-Only include files and screenshots that actually exist in your repository. If you rename the CSV to remove `(1)` or rename `Codes.sql` to `supply_chain_analysis.sql`, update the names above to match. Add screenshots after saving them; do not leave empty or placeholder images in the repository.
+**Dataset publishing note:** The raw CSV and feature-engineered CSV are not substitutes for checking the source data's license. Publish them only if the dataset's terms permit redistribution. The Power BI report may require the data file at the same relative location to refresh successfully.
 
 ## How to Explore the Project
 
 1. Read this README for the project context and key findings.
-2. Open the SQL script to inspect the 24 business questions and query logic.
-3. Review the Python notebook to understand the feature-engineering steps.
-4. Open the `.pbix` file in Power BI Desktop to explore the three dashboard pages and interact with the visuals.
-5. Check the screenshots folder for saved dashboard and selected SQL-result images, if included.
+2. Open [`sql/Codes.sql`](sql/Codes.sql) to inspect the 24 business questions and query logic.
+3. Review [`python/Project_1_Ecom.ipynb`](python/Project_1_Ecom.ipynb) to understand the feature-engineering steps.
+4. Open `powerbi/Supply_Chain_Feature_Engineered.pbix` in Power BI Desktop to explore the three dashboard pages and interact with the visuals.
+5. Check the `screenshots/` folder for dashboard and selected SQL-result images, when available.
 
-The dataset used by the notebook and Power BI file should be placed in the expected location or the data connection should be updated when opening the files on another computer.
+Before running the notebook, place the raw CSV in `data/E-commerce_Delivery_Shipping_Data_2026.csv`. When opening the Power BI report on another computer, confirm its data source path and update the connection if needed.
 
 ## Skills Demonstrated
 
