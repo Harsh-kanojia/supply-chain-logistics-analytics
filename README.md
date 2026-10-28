@@ -4,7 +4,7 @@ An end-to-end data analytics portfolio project exploring order volume, delivery 
 
 ## Project Overview
 
-This project analyzes a sample supply chain and logistics dataset containing **50,000 orders and 37 columns after feature engineering**. The workflow combines spreadsheet-based exploration, Python feature engineering, SQL-based business analysis, and an interactive Power BI dashboard.
+This project analyzes a sample supply chain and logistics dataset containing **50,000 orders and 36 columns after feature engineering**. The workflow combines spreadsheet-based exploration, Python feature engineering, SQL-based business analysis, and an interactive Power BI dashboard.
 
 The aim is to turn order-level data into understandable performance measures and practical questions that a logistics or operations team could investigate.
 
