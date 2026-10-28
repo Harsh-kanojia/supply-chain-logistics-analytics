@@ -24,7 +24,7 @@ The aim is to turn order-level data into understandable performance measures and
 - **Source resource:** [Kaggle — E-commerce Logistics Analytics](https://www.kaggle.com/code/datascikhan/e-commerce-logistics-analytics)
 - **Domain:** Supply chain and logistics
 - **Rows:** 50,000
-- **Columns:** 37 after feature engineering
+- **Columns:** 36 after feature engineering
 - **Format:** CSV
 - **Raw source file:** `data/E-commerce_Delivery_Shipping_Data_2026.csv`
 - **Feature-engineered output:** `data/Supply_Chain_Feature_Engineered.csv`
@@ -53,17 +53,16 @@ The linked Kaggle resource is a notebook page and states that the notebook is re
 
 ## Python Feature Engineering
 
-The raw source CSV has **30 columns**. The feature-engineering notebook produces a **50,000-row, 37-column** output with these seven additional fields:
+The raw source CSV has **30 columns**. The updated feature-engineering notebook produces a **50,000-row, 36-column** output with six additional fields:
 
 - `order_month`
 - `order_day_of_week`
 - `delay_severity`
-- `shipping_cost_pct`
-- `shipping_cost_per`
+- `shipping_cost_pct_of_order_value`
 - `distance_band`
 - `warehouse_processing_band`
 
-The source data already contains `delivery_delay_days`; the notebook uses it to assign the categories **On Time / Early**, **Minor Delay**, **Moderate Delay**, and **Severe Delay**. The distance and warehouse-processing bands make comparisons easier in SQL and Power BI.
+The duplicate shipping-cost percentage field has been removed. The remaining field, `shipping_cost_pct_of_order_value`, expresses shipping cost as a percentage of order value. The source data already contains `delivery_delay_days`; the notebook uses it to assign the categories **On Time / Early**, **Minor Delay**, **Moderate Delay**, and **Severe Delay**. The distance and warehouse-processing bands make comparisons easier in SQL and Power BI.
 
 The notebook uses project-relative paths. From the `python/` folder, it reads `../data/E-commerce_Delivery_Shipping_Data_2026.csv` and writes `../data/Supply_Chain_Feature_Engineered.csv`. Ensure the raw CSV is in that location before running the notebook.
 
