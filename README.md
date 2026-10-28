@@ -121,6 +121,10 @@ The completed Power BI report contains **three pages and 17 visuals**. It uses D
 
 ### Page 1 — Executive Overview
 
+![Executive Overview dashboard](screenshots/executive_overview.png)
+
+This page gives a snapshot of overall logistics performance.
+
 **Four KPI cards**
 - Total Orders
 - Late Orders
@@ -136,6 +140,8 @@ The report's core delivery measures are **50,000 total orders**, **28,162 late o
 
 ### Page 2 — Delivery Operations
 
+![Delivery Operations dashboard](screenshots/delivery_operations.png)
+
 Five charts:
 - Late Delivery Rate by Carrier
 - Late Delivery Rate by Warehouse City
@@ -146,6 +152,8 @@ Five charts:
 This page compares delivery performance across operational dimensions and helps highlight areas for further investigation.
 
 ### Page 3 — Costs, Customers & Returns
+
+![Costs, Customers & Returns dashboard](screenshots/costs_customers_returns.png)
 
 Five charts:
 - Average Shipping Cost by Shipping Method
@@ -185,8 +193,7 @@ supply-chain-logistics-analytics/
 ├── screenshots/
 │   ├── executive_overview.png
 │   ├── delivery_operations.png
-│   ├── costs_customers_returns.png
-│   └── sql_analysis/
+│   └── costs_customers_returns.png
 └── README.md
 ```
 
